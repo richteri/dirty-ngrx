@@ -8,8 +8,9 @@
     <tr>
       <td>
         <button (click)="parent.open = !parent.open">
-          {{ parent.open ? 'Close' : 'Open' }}
+          {{ parent.open ? "Close" : "Open" }}
         </button>
+      </td>
       <td>{{ parent.name }}</td>
       <td>
         <button (click)="editParent(parent)">Edit</button>
