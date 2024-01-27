@@ -50,4 +50,11 @@ export class AppComponent {
       this.facade.addChild({ parentId: parent.id, name });
     }
   }
+
+  addParent() {
+    const name = prompt(`Add Parent`);
+    if (name !== null) {
+      this.facade.addParent({ name });
+    }
+  }
 }
