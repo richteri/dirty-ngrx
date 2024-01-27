@@ -5,14 +5,9 @@ import { LetDirective } from '@ngrx/component';
 import { AppComponent } from './app.component';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    LetDirective
-  ],
+  declarations: [AppComponent],
+  imports: [BrowserModule, LetDirective],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

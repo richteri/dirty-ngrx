@@ -69,7 +69,7 @@ export class Service {
    * DELETE /parents/{parentId}
    */
   deleteParent(parentId: number): Observable<void> {
-    const index = this.parents.findIndex((parent) => (parent.id === parentId));
+    const index = this.parents.findIndex((parent) => parent.id === parentId);
     this.parents.splice(index, 1);
 
     return res(`Service.deleteParent(${parentId})`);
@@ -79,7 +79,7 @@ export class Service {
    * PUT /parents/{parentId}
    */
   updateParent(parentId: number, name: string): Observable<Parent> {
-    const index = this.parents.findIndex((parent) => (parent.id === parentId));
+    const index = this.parents.findIndex((parent) => parent.id === parentId);
     const parent = this.parents[index];
     parent.name = name;
 
@@ -117,7 +117,7 @@ export class Service {
   deleteChild(parentId: number, childId: number): Observable<void> {
     const parent = this.parents.find(({ id }) => parentId === id);
     if (parent) {
-      const index = parent.children.findIndex((child) => (child.id === childId));
+      const index = parent.children.findIndex((child) => child.id === childId);
 
       if (index >= 0) {
         parent.children.splice(index, 1);
@@ -139,7 +139,7 @@ export class Service {
   ): Observable<Child> {
     const parent = this.parents.find((parent) => parent.id === parentId);
     if (parent) {
-      const index = parent.children.findIndex((child) => (child.id === childId));
+      const index = parent.children.findIndex((child) => child.id === childId);
 
       if (index >= 0) {
         const child = { ...parent.children[index], name };

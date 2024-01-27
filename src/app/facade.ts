@@ -90,25 +90,29 @@ export class Facade extends ComponentStore<State> implements OnStateInit {
     },
   );
 
-  readonly loadParent = this.effect((param$: Observable<{ parentId: number }>) => {
-    return param$.pipe(
-      exhaustMap(({ parentId }) =>
-        this.service.findParent(parentId).pipe(
-          tapResponse(
-            (parent) =>
-              this.patchState((state) => {
-                const index = state.parents.findIndex((p) => p.id === parentId);
-                parent.open = true;
-                state.parents.splice(index, 1, parent);
+  readonly loadParent = this.effect(
+    (param$: Observable<{ parentId: number }>) => {
+      return param$.pipe(
+        exhaustMap(({ parentId }) =>
+          this.service.findParent(parentId).pipe(
+            tapResponse(
+              (parent) =>
+                this.patchState((state) => {
+                  const index = state.parents.findIndex(
+                    (p) => p.id === parentId,
+                  );
+                  parent.open = true;
+                  state.parents.splice(index, 1, parent);
 
-                return state;
-              }),
-            (error) => console.error(error),
+                  return state;
+                }),
+              (error) => console.error(error),
+            ),
           ),
         ),
-      ),
-    );
-  });
+      );
+    },
+  );
 
   readonly addChild = this.effect(
     (param$: Observable<{ parentId: number; name: string }>) => {
